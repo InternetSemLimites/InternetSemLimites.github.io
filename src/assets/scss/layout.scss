@@ -1,0 +1,85 @@
+.banner {
+    background: linear-gradient(to bottom, $primary-color 20%, $secondary-color 80%);
+    color: $white;
+    min-height: 20rem;
+    padding: 5rem 0;
+
+    .banner--logo {
+        max-height: 10rem;
+        margin-bottom: 5rem;
+    }
+
+    .banner--title {
+        font-style: italic;
+        letter-spacing: -1px;
+        font-weight: bolder;
+    }
+
+}
+
+.heaven {}
+.hell {
+    background: linear-gradient(to bottom, $brownish-gray 5%, #A17858 50%, $hell-red 80%);
+}
+section {
+    .section--header {
+        padding-top: 1rem;
+
+        .section--title {
+            color: $white;
+            font-weight: bolder;
+            &.section--title__heaven {
+                color: $secondary-color;
+            }
+        }
+
+        .section--lead{
+            color: $white;
+            &.section--lead__heaven {
+                color: $medium-gray;
+            }
+        }
+
+    }
+}
+
+.state-card {
+    .state-card--header {
+        background-color: $light-gray;
+        text-transform: uppercase;
+        padding: 0.5rem 0;
+        color: $primary-color;
+    }
+    .state-card--content {
+        background-color: lighten($light-gray, 5%);
+        padding: 1rem;
+    }
+}
+
+.isp-list {
+    padding-bottom: 2rem;
+    .isp-list--header, .isp-list--isp {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .isp-list--header {
+        color: $medium-gray;
+        font-size: 0.9rem;
+    }
+
+    .isp-list--isp {
+        color: $secondary-color;
+        font-weight: bolder;
+        padding: 0.5rem 0;
+        text-transform: uppercase;
+    }
+
+}
+
+footer {
+    background-color: $brownish-gray;
+    padding: 1rem 0;
+    min-height: 5rem;
+}
