@@ -126,6 +126,7 @@ $(document).on('click', '.estados.hasProvider', function(event) {
         dataType: 'json',
     })
     .done(function(data) {
+        var providers = data.providers;
 
         // If for some reason the call succeds but we don't get a valid list of providers, return early.
         if (id && providers.length > 0) {
