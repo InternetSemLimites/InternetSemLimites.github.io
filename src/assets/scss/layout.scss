@@ -17,11 +17,14 @@
 
 }
 
-.heaven {}
+.heaven {
+    // Any heaven specific styling should go here
+}
 .hell {
     background: linear-gradient(to bottom, $brownish-gray 5%, #A17858 50%, $hell-red 80%);
 }
 section {
+    padding: 5rem 0;
     .section--header {
         padding-top: 1rem;
 
@@ -40,6 +43,19 @@ section {
             }
         }
 
+    }
+}
+
+.estados {
+    fill: $light-gray;
+    &.hasProvider {
+        fill: $secondary-color;
+    }
+    &.active {
+        fill: $primary-color;
+    }
+    &:hover {
+        fill: lighten($primary-color, 30%);
     }
 }
 
@@ -75,7 +91,16 @@ section {
         padding: 0.5rem 0;
         text-transform: uppercase;
     }
+}
 
+.isp--hell {
+    color: $white;
+    a {
+        color: $light-gray;
+        &:hover {
+            color: $medium-gray;
+        }
+    }
 }
 
 footer {

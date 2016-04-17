@@ -20,11 +20,11 @@
     <div class="small-12 columns">
       <div class="row">
         <div class="large-6 medium-6 small-12 columns">
-          <img src="{{root}}assets/img/mapa.png" alt="Mapa interativo do Brasil">
+          {{> mapa}}
         </div>
         <div class="large-6 medium-6 small-12 columns | state-card">
           <div class="text-center | state-card--header">
-            <h4 class="state-card--title">Rio Grande do Sul</h4>
+            <h4 class="state-card--title">Selecione um estado no mapa</h4>
           </div>
           <div class="state-card--content">
             <div class="isp-list">
@@ -32,32 +32,19 @@
                 <span class="isp-list--left small">Provedor</span>
                 <span class="isp-list--right small">Fonte</span>
               </div>
-                  <div class="isp-list--isp">
-                    <span class="isp-list--left">Algar Telecom</span>
-                    <span class="isp-list--right"><a href="#">Link</a></span>
-                  </div>
-                  <div class="isp-list--isp">
-                    <span class="isp-list--left">Clean Net</span>
-                    <span class="isp-list--right"><a href="#">Link</a></span>
-                  </div>
-                  <div class="isp-list--isp">
-                    <span class="isp-list--left">Giga internet</span>
-                    <span class="isp-list--right"><a href="#">Link</a></span>
-                  </div>
-                  <div class="isp-list--isp">
-                    <span class="isp-list--left">Renovare Telecom</span>
-                    <span class="isp-list--right"><a href="#">Link</a></span>
-                  </div>
+              <div class="isp-list--content">
+                <!-- Provedores serão colocados aqui quando um estado for selecionado -->
+              </div>
             </div>
             <div class="text-center | state-card--cta">
-              <button class="large secondary button">Adicionar Provedor</button>
+              <a href="https://internetsemlimites.herokuapp.com/new" class="large secondary button">Adicionar Provedor</a>
             </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="row align-center">
+<!--   <section class="row align-center">
     <div class="small-12 columns text-center | section--header">
       <h2 class="section--title section--title__heaven">Como posso ajudar?</h2>
       <p class="lead | section--lead section--lead__heaven">
@@ -85,7 +72,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </div>
 
 <!-- Hell -->
@@ -99,22 +86,7 @@
     </div>
     <div class="small-12">
       <div class="row align-middle align-justify small-up-2 medium-up-4 large-up-6 | isp--hell">
-        <div class="column text-center">
-          <img src="//placehold.it/150/FFF/CCC?text=LOGO" alt="Logo do Provedor">
-          <p><a href="#">Fonte</a></p>
-        </div>
-        <div class="column text-center">
-          <img src="//placehold.it/150/FFF/CCC?text=LOGO" alt="Logo do Provedor">
-          <p><a href="#">Fonte</a></p>
-        </div>
-        <div class="column text-center">
-          <img src="//placehold.it/150/FFF/CCC?text=LOGO" alt="Logo do Provedor">
-          <p><a href="#">Fonte</a></p>
-        </div>
-        <div class="column text-center">
-          <img src="//placehold.it/150/FFF/CCC?text=LOGO" alt="Logo do Provedor">
-          <p><a href="#">Fonte</a></p>
-        </div>
+        <!-- Provedores -->
       </div>
     </div>
   </section>
