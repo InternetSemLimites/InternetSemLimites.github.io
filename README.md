@@ -16,16 +16,4 @@ Como o gerador de sites do *ZURB Foundation 6* não possui suporte direto ao Git
 
 Isto significa que se colocássemos todo o código no branch `gh-pages` como acontece com *Jekyll*, nenhuma página seria gerado.
 
-Para que a publicação funcione são necessários os seguintes passos:
-- Manter o código em um branch que não seja `gh-pages` (ou `master`, no caso de organizações)
-- Executar o comando `npm run build` na raíz do repositório
-- Enviar o código gerado pelo `build` para o Github num branch orfão chamado `gh-pages`. Veja os comandos necessários abaixo, **MUITA ATENÇÃO** para o parâmetro `--work-tree` nos commandos:
-```sh
-git --work-tree=dist checkout --orphan gh-pages
-
-git --work-tree=dist add --all
-
-git --work-tree=dist commit -m "Mensagem do commit"
-
-git push origin gh-pages
-```
+Para fazer o deployment utilize o script `deploy.sh` incluido. *Dependendo do seu setup, poderá ser necessário configurar algumas das variáveis incluidas no arquivo*.
