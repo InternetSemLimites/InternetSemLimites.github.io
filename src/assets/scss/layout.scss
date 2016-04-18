@@ -1,0 +1,133 @@
+.banner {
+    background: linear-gradient(to bottom, $primary-color 20%, $secondary-color 80%);
+    color: $white;
+    min-height: 20rem;
+    .banner--logo {
+        max-height: 10rem;
+        margin-bottom: 5rem;
+    }
+
+    .banner--title {
+        font-style: italic;
+        letter-spacing: -1px;
+        font-weight: bolder;
+    }
+
+}
+
+.heaven {
+    // Any heaven specific styling should go here
+}
+.hell {
+    background: linear-gradient(to bottom, $brownish-gray 5%, #A17858 50%, $hell-red 80%);
+}
+section {
+    padding: 5rem 0;
+    .section--header {
+        padding-top: 1rem;
+
+        .section--title {
+            color: $white;
+            font-weight: bolder;
+            &.section--title__heaven {
+                color: $secondary-color;
+            }
+        }
+
+        .section--lead{
+            color: $white;
+            &.section--lead__heaven {
+                color: $medium-gray;
+            }
+        }
+
+    }
+}
+
+.estados {
+    fill: $light-gray;
+    &.hasProvider {
+        fill: $secondary-color;
+    }
+    &.active {
+        fill: $primary-color;
+    }
+    &:hover {
+        fill: lighten($primary-color, 30%);
+    }
+}
+
+.state-card {
+    .state-card--header {
+        background-color: $light-gray;
+        text-transform: uppercase;
+        padding: 0.5rem 0;
+        color: $primary-color;
+    }
+    .state-card--content {
+        background-color: lighten($light-gray, 5%);
+        padding: 1rem;
+    }
+}
+
+.isp-list {
+    padding-bottom: 2rem;
+    .isp-list--header, .isp-list--isp {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .isp-list--header {
+        color: $medium-gray;
+        font-size: 0.9rem;
+    }
+
+    .isp-list--isp {
+        color: $secondary-color;
+        font-weight: bolder;
+        padding: 0.5rem 0;
+        text-transform: uppercase;
+    }
+}
+
+.isp--hell {
+    color: $white;
+    a {
+        color: $light-gray;
+        &:hover {
+            color: $medium-gray;
+        }
+    }
+}
+
+footer {
+    background-color: $brownish-gray;
+    padding: 1rem 0;
+    min-height: 5rem;
+}
+
+.social__link {
+    display: inline-block;
+    padding-top: 1rem;
+    .social__icon {
+        max-height: 2rem;
+        width: 3rem;
+        margin: 0 0.2rem;
+        vertical-align: middle;
+        fill: $white;
+        #github__icon& {
+            fill: $body-font-color;
+        }
+    }
+}
+
+svg.svg {
+    &.svg__cloud {
+        margin-bottom: -10px;
+
+    }
+    &.svg__spikes {
+        margin-top: -2px;
+    }
+}
