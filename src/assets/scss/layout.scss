@@ -2,8 +2,6 @@
     background: linear-gradient(to bottom, $primary-color 20%, $secondary-color 80%);
     color: $white;
     min-height: 20rem;
-    padding: 5rem 0;
-
     .banner--logo {
         max-height: 10rem;
         margin-bottom: 5rem;
@@ -124,3 +122,12 @@ footer {
     }
 }
 
+svg.svg {
+    &.svg__cloud {
+        margin-bottom: -10px;
+
+    }
+    &.svg__spikes {
+        margin-top: -2px;
+    }
+}
