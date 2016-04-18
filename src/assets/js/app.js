@@ -137,6 +137,7 @@ $(document).on('click', '.estados.hasProvider', function(event) {
 
         // Call was successful, let's clear up the old selected state in the map
         $('.estados').removeClass('active');
+        $('.isp-list--header').removeClass('hide');
 
         // Update the title of the card to match the currently selected state.
         $('.state-card--title').text(API.statesMap[id]);
