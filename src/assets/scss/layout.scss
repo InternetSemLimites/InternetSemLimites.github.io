@@ -98,9 +98,13 @@ section {
     color: $white;
     a {
         color: $light-gray;
+        margin-left: 8px;
         &:hover {
             color: $medium-gray;
         }
+    }
+    .svg-icon {
+        width: 16px;
     }
 }
 
