@@ -50,8 +50,6 @@ var API = {
 };
 
 
-
-$(document).ready(function($) {
     // Populates the interactive map with states that have Unlimited data providers
     $.ajax({
         url: API.url + 'fame/',
@@ -71,9 +69,11 @@ $(document).ready(function($) {
 
         // Remove duplicate entries from the array and add the hasProvider class to the related SVG markup in the page
         estados = getUnique(estados);
-        for (var i = 0; i <  estados.length; i++) {
-            $('#' + estados[i]).addClass('hasProvider');
-        }
+        $(document).ready(function($) {
+            for (var i = 0; i <  estados.length; i++) {
+                $('#' + estados[i]).addClass('hasProvider');
+            }
+        });
     })
     .fail(function(err) {
         console.log('error: ', err);
@@ -100,13 +100,13 @@ $(document).ready(function($) {
                 )
             );
         }
-        $('.isp--hell').append(list);
+        $(document).ready(function($) {
+            $('.isp--hell').append(list);
+        });
     })
     .fail(function(err) {
         console.log("error: ", err);
     });
-
-});
 
 /**
  * On click of every state in the interactive map we will make an API call to fetch all the providers
@@ -148,9 +148,9 @@ $(document).on('click', '.estados.hasProvider', function(event) {
         for(var i = 0; i < providers.length; i++) {
             list.push(
                 $('<div />', {'class': 'isp-list--isp'}).append(
-                    $('<span />', {'class': 'isp-list--left'}).text(providers[i].name),
+                    $('<a />', {'class': 'isp-list--left', 'href': providers[i].url}).text(providers[i].name),
                     $('<span />', {'class': 'isp-list--right'}).append(
-                        $('<a />', {'href': providers[i].source}).text('Link')
+                        $('<a />', {'href': providers[i].source}).html('<svg class="svg-icon" viewBox="0 0 1000 858"><use xlink:href="#svg-icon--link"></use></svg>')
                     )
                 )
             );

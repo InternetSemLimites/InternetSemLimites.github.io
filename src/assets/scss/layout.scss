@@ -88,6 +88,9 @@ section {
         font-weight: bolder;
         padding: 0.5rem 0;
         text-transform: uppercase;
+        a {
+            color: inherit;
+        }
     }
 }
 
@@ -119,6 +122,13 @@ footer {
         #github__icon& {
             fill: $body-font-color;
         }
+    }
+}
+
+.svg-icon {
+    width: 24px;
+    g {
+        fill: $medium-gray;
     }
 }
 
