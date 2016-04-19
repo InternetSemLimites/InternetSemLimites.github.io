@@ -150,7 +150,7 @@ $(document).on('click', '.estados.hasProvider', function(event) {
                 $('<div />', {'class': 'isp-list--isp'}).append(
                     $('<span />', {'class': 'isp-list--left'}).text(providers[i].name),
                     $('<span />', {'class': 'isp-list--right'}).append(
-                        $('<a />', {'href': providers[i].source}).text('Link')
+                        $('<a />', {'href': providers[i].source}).html('<svg class="svg-icon" viewBox="0 0 1000 858"><use xlink:href="#svg-icon--link"></use></svg>')
                     )
                 )
             );

@@ -122,6 +122,13 @@ footer {
     }
 }
 
+.svg-icon {
+    width: 24px;
+    g {
+        fill: $medium-gray;
+    }
+}
+
 svg.svg {
     &.svg__cloud {
         margin-bottom: -10px;
