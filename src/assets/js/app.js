@@ -1,5 +1,15 @@
 $(document).foundation();
 
+// auxiliar function to sort arrays of objects by `name` property
+var compare = function (firstObj, nextObj) {
+  if (firstObj.name < nextObj.name) {
+    return -1;
+  } else if (firstObj.name > nextObj.name) {
+    return 1;
+  }
+  return 0;
+};
+
 // Anything related to the API that can/will be reused should be placed in there
 var API = {
     // Default API url
@@ -65,9 +75,27 @@ $.ajax({
         }
     }
 
+    // make a sorted list with state names and abbreviation (to feed the select menu)
+    var sortedStates = states.map((state) => {
+      return { name: API.statesMap[state].name, abbr: state };
+    }).sort(compare);
+
     // Add the hasProvider class to the related SVG markup in the page
     $(document).ready(function($) {
-        states.map((state) => $(`#${state}`).addClass('hasProvider'));
+
+        var selectMenu = document.getElementById('states');
+        sortedStates.map((state) => {
+          
+            // show states with providers in the map
+            $(`#${state.abbr}`).addClass('hasProvider');
+
+            // add states with providers to the select menu
+            var optionTag = document.createElement('option');
+            optionTag.setAttribute('value', state.abbr);
+            optionTag.innerHTML = API.statesMap[state.abbr].name;
+            selectMenu.appendChild(optionTag);
+
+        });
     });
 
     // Hall of Shame (populate footer)
@@ -89,28 +117,35 @@ $.ajax({
     console.error(url, status, err.toString());
 });
 
-/**
- * On click of every state in the interactive map we will make an API call to fetch all the providers
- * that offer unlimited internet and covers that state. We'll then use that information to populate
- * the list next to the map with that information.
- */
-$(document).on('click', '.estados.hasProvider', function(event) {
+// On click of any state in the interactive map, or from the select menu,
+// we will load the providers from the API object
+
+var loadProviders = function (event) {
+
     // Return early since this is already the currently selected state
-    if ($(this).hasClass('active')) {
+    if ($(this).hasClass('active') || $(this).attr('selected') === 'selected') {
         return;
     }
 
-    var id = $(this).attr('id');
+    // get the state id
+    var id = null;
+    if (event.type == 'change') {
+      id = $(this).val();
+    } else {
+      id = $(this).attr('id');
+    }
+
+    // shorcut for the state providers array
     var providers = API.statesMap[id].providers;
 
-    // If for some reason the call succeds but we don't get a valid list of providers, return early.
-    if (id && providers.length > 0) {
+    // if for some reason we don't get a valid list of providers, return early
+    if (!id || providers.length > 0) {
         $('.isp-list--content').html('');
     } else {
         return;
     }
 
-    // Call was successful, let's clear up the old selected state in the map
+    // Call was successful, let's clear up the old selected state
     $('.estados').removeClass('active');
     $('.isp-list--header').removeClass('hide');
 
@@ -133,5 +168,9 @@ $(document).on('click', '.estados.hasProvider', function(event) {
 
     // Add the .active class to the selected state since we'll now be displaying its information
     $('#' + id).addClass('active');
+    $('#states').val(id);
 
-});
+};
+
+$(document).on('click', '.estados.hasProvider', loadProviders);
+$(document).on('change', '#states', loadProviders);

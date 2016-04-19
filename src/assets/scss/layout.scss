@@ -16,7 +16,17 @@
 }
 
 .heaven {
-    // Any heaven specific styling should go here
+
+  select {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    color: $medium-gray;
+    margin-bottom: 5rem;
+    &:focus {
+      color: $dark-gray;
+    }
+  }
 }
 .hell {
     background: linear-gradient(to bottom, $brownish-gray 5%, #A17858 50%, $hell-red 80%);
