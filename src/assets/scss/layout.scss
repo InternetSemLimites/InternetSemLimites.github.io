@@ -88,6 +88,9 @@ section {
         font-weight: bolder;
         padding: 0.5rem 0;
         text-transform: uppercase;
+        a {
+            color: inherit;
+        }
     }
 }
 
