@@ -22,6 +22,10 @@ PATHS:
   assets:
     - "src/assets/**/*"
     - "!src/assets/{img,js,scss}/**/*"
+  # Copy the core git files through to the build
+  core:
+    - "README.md"
+    - "LICENSE.md"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "node_modules/foundation-sites/scss"
