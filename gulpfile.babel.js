@@ -26,7 +26,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy)));
+ gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy, core)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -36,6 +36,12 @@ gulp.task('default',
 // This happens every time a build starts
 function clean(done) {
   rimraf(PATHS.dist, done);
+}
+
+// Copy core files for the Github repo across to the build foolder for compatibility on deploy
+function core() {
+  return gulp.src(PATHS.core)
+    .pipe(gulp.dest(PATHS.dist + '/'));
 }
 
 // Copy files out of the assets folder
