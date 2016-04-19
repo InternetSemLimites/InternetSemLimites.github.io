@@ -1,5 +1,11 @@
 $(document).foundation();
 
+// hide heaven & hell while we fetch the data from the API
+$(document).ready(function () {
+  $('.heaven').hide();
+  $('.hell').hide();
+});
+
 // auxiliar function to sort arrays of objects by `name` property
 var compare = function (firstObj, nextObj) {
   if (firstObj.name < nextObj.name) {
@@ -96,6 +102,11 @@ $.ajax({
             selectMenu.appendChild(optionTag);
 
         });
+
+        // show heaven
+        $('.heaven-loading').remove();
+        $('.heaven').show();
+
     });
 
     // Hall of Shame (populate footer)
@@ -110,7 +121,12 @@ $.ajax({
         );
     });
     $(document).ready(function($) {
+      
         $('.isp--hell').append(listOfShamefulProviders);
+        
+        // show hell
+        $('.hell').show();
+
     });
 })
 .fail(function (xhr, status, err) {
