@@ -50,63 +50,63 @@ var API = {
 };
 
 
-    // Populates the interactive map with states that have Unlimited data providers
-    $.ajax({
-        url: API.url + 'fame/',
-        type: 'GET',
-        dataType: 'json',
-    })
-    .done(function(data) {
+// Populates the interactive map with states that have Unlimited data providers
+$.ajax({
+    url: API.url + 'fame/',
+    type: 'GET',
+    dataType: 'json',
+})
+.done(function(data) {
 
-        var providers = data.providers;
-        var estados = [];
+    var providers = data.providers;
+    var estados = [];
 
-        // Get the states that each provider covers and add it to an array
-        for(var i = 0; i < providers.length; i++) {
-            var provider = providers[i];
-            estados = estados.concat(provider.coverage);
+    // Get the states that each provider covers and add it to an array
+    for(var i = 0; i < providers.length; i++) {
+        var provider = providers[i];
+        estados = estados.concat(provider.coverage);
+    }
+
+    // Remove duplicate entries from the array and add the hasProvider class to the related SVG markup in the page
+    estados = getUnique(estados);
+    $(document).ready(function($) {
+        for (var i = 0; i <  estados.length; i++) {
+            $('#' + estados[i]).addClass('hasProvider');
         }
-
-        // Remove duplicate entries from the array and add the hasProvider class to the related SVG markup in the page
-        estados = getUnique(estados);
-        $(document).ready(function($) {
-            for (var i = 0; i <  estados.length; i++) {
-                $('#' + estados[i]).addClass('hasProvider');
-            }
-        });
-    })
-    .fail(function(err) {
-        console.log('error: ', err);
     });
+})
+.fail(function(err) {
+    console.log('error: ', err);
+});
 
-    // Populates the hall of shame on page load.
-    $.ajax({
-        url: API.url + 'shame/',
-        type: 'GET',
-        dataType: 'json',
-    })
-    .done(function(data) {
+// Populates the hall of shame on page load.
+$.ajax({
+    url: API.url + 'shame/',
+    type: 'GET',
+    dataType: 'json',
+})
+.done(function(data) {
 
-        // Creates an array with jQuery objects that will be appended to the markup down below
-        var providers = data.providers;
-        var list = [];
-        for(var i = 0; i < data.providers.length; i++) {
-            list.push(
-                $('<div />', {'class': 'column text-center'}).append(
-                    $('<h3 />').text(providers[i].name),
-                    $('<p />').append(
-                        $('<a />', {'href': providers[i].source}).text('Fonte')
-                    )
+    // Creates an array with jQuery objects that will be appended to the markup down below
+    var providers = data.providers;
+    var list = [];
+    for(var i = 0; i < data.providers.length; i++) {
+        list.push(
+            $('<div />', {'class': 'column text-center'}).append(
+                $('<h3 />').text(providers[i].name),
+                $('<p />').append(
+                    $('<a />', {'href': providers[i].source}).text('Fonte')
                 )
-            );
-        }
-        $(document).ready(function($) {
-            $('.isp--hell').append(list);
-        });
-    })
-    .fail(function(err) {
-        console.log("error: ", err);
+            )
+        );
+    }
+    $(document).ready(function($) {
+        $('.isp--hell').append(list);
     });
+})
+.fail(function(err) {
+    console.log("error: ", err);
+});
 
 /**
  * On click of every state in the interactive map we will make an API call to fetch all the providers
