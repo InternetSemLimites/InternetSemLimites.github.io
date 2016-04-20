@@ -43,8 +43,7 @@ var API = {
         'SE': { name: 'Sergipe', providers: [] },
         'SP': { name: 'São Paulo', providers: [] },
         'TO': { name: 'Tocantins', providers: [] },
-    },
-    'hallOfShame': []
+    }
 };
 
 
@@ -58,6 +57,7 @@ $.ajax({
 
     // Hall of Fame (populate map)
     var fame = data['hall-of-fame'];
+    API.hallOfFame = fame;
     var states = []
 
     // Group the providers by state
@@ -85,7 +85,7 @@ $.ajax({
 
         var selectMenu = document.getElementById('states');
         sortedStates.map((state) => {
-          
+
             // show states with providers in the map
             $(`#${state.abbr}`).addClass('hasProvider');
 
@@ -100,6 +100,7 @@ $.ajax({
 
     // Hall of Shame (populate footer)
     var shame = data['hall-of-shame'];
+    API.hallOfShame = data['hall-of-shame'];
     var listOfShamefulProviders = shame.map((provider) => {
         return (
             $('<div />', {'class': 'column text-center'}).append(
@@ -112,9 +113,23 @@ $.ajax({
     $(document).ready(function($) {
         $('.isp--hell').append(listOfShamefulProviders);
     });
+
+    // Populate dataLayer with the values returned from the API
+    dataLayer.push({
+        'event': 'APISucceded',
+        'API': API
+    });
 })
 .fail(function (xhr, status, err) {
-    console.error(url, status, err.toString());
+    console.error(API.url, status, err.toString());
+    dataLayer.push({
+        'event': 'APIFailed',
+        'details': {
+            'url': API.url,
+            'status': status,
+            'error': err
+        }
+    })
 });
 
 // On click of any state in the interactive map, or from the select menu,
@@ -137,6 +152,11 @@ var loadProviders = function (event) {
 
     // shorcut for the state providers array
     var providers = API.statesMap[id].providers;
+    dataLayer.push({
+        "event": 'stateSelected',
+        "action": (event.type == 'change') ? "UsedDropdpwn" : "ClickedMap",
+        "state": API.statesMap[id]
+    });
 
     // if for some reason we don't get a valid list of providers, return early
     if (!id || providers.length > 0) {
