@@ -192,10 +192,15 @@ var loadProviders = function (event) {
     // be appended to the markup
     var listOfProviders = providers.map((provider) => {
         return (
-            $('<div />', {'class': 'isp-list--isp'}).append(
-                $('<a />', {'class': 'isp-list--left', 'href': provider.url}).text(provider.name),
-                $('<span />', {'class': 'isp-list--right'}).append(
-                    $('<a />', {'href': provider.source}).html('<svg class="svg-icon" viewBox="0 0 1000 858"><use xlink:href="#svg-icon--link"></use></svg>')
+            $('<div />').append(
+                $('<div />', {'class': 'isp-list--isp'}).append(
+                    $('<a />', {'class': 'isp-list--left', 'href': provider.url}).text(provider.name),
+                    $('<span />', {'class': 'isp-list--right'}).append(
+                        $('<a />', {'href': provider.source}).html('<svg class="svg-icon" viewBox="0 0 1000 858"><use xlink:href="#svg-icon--link"></use></svg>')
+                    )
+                ),
+                $('<div />', {'class': 'isp-list--isp'}).append(
+                    $('<span />', {'class': 'isp-list--more'}).text(provider.other)
                 )
             )
         );
