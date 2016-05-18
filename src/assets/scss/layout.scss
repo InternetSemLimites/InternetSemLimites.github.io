@@ -57,13 +57,14 @@ section {
 .estados {
     fill: $light-gray;
     &.hasProvider {
+        cursor: pointer;
         fill: $secondary-color;
+        &:hover {
+            fill: lighten($primary-color, 30%);
+        }
     }
     &.active {
         fill: $primary-color;
-    }
-    &:hover {
-        fill: lighten($primary-color, 30%);
     }
 }
 
@@ -133,7 +134,7 @@ footer {
         margin: 0 0.2rem;
         vertical-align: middle;
         fill: $white;
-        #github__icon& {
+        #github__icon {
             fill: $body-font-color;
         }
     }
